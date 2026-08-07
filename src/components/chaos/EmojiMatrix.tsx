@@ -27,11 +27,11 @@ export function EmojiMatrix() {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.font = `${fontSize}px "JetBrains Mono"`;
       for (let i = 0; i < drops.length; i++) {
-        const text = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+        const text = EMOJIS[Math.floor(Math.random() * EMOJIS.length)] ?? "📧";
+        const y = drops[i] ?? 1;
         ctx.fillStyle = Math.random() > 0.9 ? "#78dc77" : "#253a25";
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
+        ctx.fillText(text, i * fontSize, y * fontSize);
+        drops[i] = y * fontSize > canvas.height && Math.random() > 0.975 ? 1 : y + 1;
       }
     }, 50);
 
