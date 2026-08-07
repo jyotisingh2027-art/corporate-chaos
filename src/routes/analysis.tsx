@@ -110,7 +110,7 @@ function AnalysisScreen() {
               </div>
             </header>
 
-            <div className="grid flex-1 grid-cols-1 gap-6 md:grid-cols-12">
+            <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-12">
               <div className="relative col-span-1 flex flex-col items-center justify-center rounded-xl border border-outline-variant bg-surface-container p-6 shadow-sticker md:col-span-5 lg:col-span-4">
                 <div className="absolute top-4 left-4 rotate-[3deg]">
                   <span className="rounded border border-tertiary-fixed bg-tertiary px-2 py-1 font-label text-label-sm font-bold text-on-tertiary uppercase">
@@ -152,7 +152,7 @@ function AnalysisScreen() {
                 </div>
               </div>
 
-              <div className="col-span-1 grid grid-cols-1 gap-4 md:col-span-7 lg:col-span-8">
+              <div className="col-span-1 grid auto-rows-min grid-cols-1 gap-4 md:col-span-7 lg:col-span-8">
                 <Metric
                   icon="local_cafe"
                   iconClass="text-tertiary"
