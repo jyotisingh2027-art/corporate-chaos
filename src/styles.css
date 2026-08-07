@@ -102,6 +102,7 @@
   --color-on-tertiary-container: var(--on-tertiary-container);
   --color-tertiary-fixed: var(--tertiary-fixed);
   --color-on-tertiary-fixed: var(--on-tertiary-fixed);
+  --color-error: var(--error);
   --color-error-container: var(--error-container);
   --color-on-error: var(--on-error);
   --color-on-error-container: var(--on-error-container);
