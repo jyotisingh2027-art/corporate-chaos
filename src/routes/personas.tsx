@@ -4,12 +4,12 @@ import { Icon } from "@/components/chaos/Icon";
 import { TopAppBar } from "@/components/chaos/TopAppBar";
 import { SideNavBar } from "@/components/chaos/SideNavBar";
 import { SiteFooter } from "@/components/chaos/SiteFooter";
-import { DEFAULT_RESULTS, loadResults, type Results } from "@/lib/chaos-game";
-import { PERSONAS, matchPersona, type Persona } from "@/lib/personas";
+import { DEFAULT_RESULTS, loadResults, severity, type Results } from "@/lib/chaos-game";
+import { matchPersona } from "@/lib/personas";
 
 const TITLE = "Your Office Persona — Corporate Chaos";
 const DESC =
-  "Your corporate jungle persona, revealed: from the Zen Master Sloth to the Micromanagement Lion. Meet every creature on your floor.";
+  "Your corporate jungle persona, revealed — from the Zen Master Sloth to the Chaos Agent and the Spreadsheet Ninja.";
 
 export const Route = createFileRoute("/personas")({
   head: () => ({
@@ -25,35 +25,6 @@ export const Route = createFileRoute("/personas")({
   component: PersonasScreen,
 });
 
-function PersonaCard({ p, index }: { p: Persona; index: number }) {
-  return (
-    <article
-      className={`relative overflow-hidden rounded-xl border-2 border-outline-variant bg-surface-container shadow-sticker transition-transform duration-300 hover:rotate-0 ${
-        index % 2 === 0 ? "-rotate-1" : "rotate-1"
-      }`}
-    >
-      <div className="absolute -top-3 -left-3 z-10 h-5 w-14 -rotate-12 bg-tertiary opacity-80" />
-      <img
-        src={p.image}
-        alt={p.alt}
-        loading="lazy"
-        className="aspect-square w-full object-cover"
-      />
-      <div className="p-6">
-        <div className="mb-3 flex h-10 w-10 items-center justify-center rounded border-2 border-primary bg-primary-container">
-          <Icon name={p.icon} filled className="text-on-primary-container" />
-        </div>
-        <h3 className="font-display text-headline-sm text-on-surface">{p.name}</h3>
-        <p className="mt-1 font-label text-label-sm text-primary uppercase">{p.title}</p>
-        <p className="mt-2 text-body-md text-on-surface-variant">{p.trait}</p>
-        <span className="mt-4 inline-block rounded bg-error-container px-2 py-1 font-label text-label-sm text-error">
-          THREAT: {p.threat}
-        </span>
-      </div>
-    </article>
-  );
-}
-
 function PersonasScreen() {
   const [results, setResults] = useState<Results>(DEFAULT_RESULTS);
 
@@ -62,7 +33,15 @@ function PersonasScreen() {
     if (saved) setResults(saved);
   }, []);
 
-  const match = matchPersona(results);
+  const persona = matchPersona(results);
+
+  const stats = [
+    { label: "Survival", value: results.survival },
+    { label: "Caffeine", value: results.caffeine },
+    { label: "Meetings", value: results.meetings },
+    { label: "Email avoidance", value: results.email },
+    { label: "Stress", value: results.stress },
+  ];
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -73,59 +52,77 @@ function PersonasScreen() {
           <div className="mx-auto flex w-full max-w-container-max flex-1 flex-col gap-8">
             <header className="rounded-xl border border-surface-variant bg-surface-container-high p-6 shadow-sticker">
               <h1 className="font-display text-headline-sm tracking-tight text-primary uppercase md:text-headline-lg">
-                Field Guide: Office Personas
+                Your Office Persona
               </h1>
               <p className="mt-1 font-label text-label-sm text-on-surface-variant">
-                &gt; Do not approach. Do not feed. Do not add to the group chat.
+                &gt; Classification complete. One specimen matched to your answers.
               </p>
             </header>
 
             <section className="grid grid-cols-1 gap-0 overflow-hidden rounded-xl border-2 border-primary bg-surface-container-high shadow-sticker md:grid-cols-2">
               <img
-                src={match.image}
-                alt={match.alt}
+                src={persona.image}
+                alt={persona.alt}
                 className="aspect-square w-full object-cover"
               />
-              <div className="flex flex-col justify-center gap-3 p-6 md:p-8">
+              <div className="flex flex-col justify-center gap-4 p-6 md:p-8">
                 <span className="w-fit rounded border border-tertiary-fixed bg-tertiary px-2 py-1 font-label text-label-sm font-bold text-on-tertiary uppercase">
-                  Your persona
+                  You are
                 </span>
-                <h2 className="font-display text-headline-sm text-primary uppercase md:text-headline-lg">
-                  {match.name}
-                </h2>
-                <p className="font-label text-label-sm text-on-surface-variant uppercase">
-                  {match.title}
-                </p>
-                <p className="text-body-md text-on-surface">{match.trait}</p>
-                <div className="mt-2 flex flex-wrap gap-2 font-label text-label-sm">
-                  <span className="rounded bg-surface-container px-2 py-1 text-on-surface-variant">
-                    SURVIVAL {results.survival}%
-                  </span>
-                  <span className="rounded bg-surface-container px-2 py-1 text-on-surface-variant">
-                    CAFFEINE {results.caffeine}%
-                  </span>
-                  <span className="rounded bg-surface-container px-2 py-1 text-on-surface-variant">
-                    MEETINGS {results.meetings}%
-                  </span>
-                  <span className="rounded bg-error-container px-2 py-1 text-error">
-                    THREAT {match.threat}
-                  </span>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded border-2 border-primary bg-primary-container">
+                    <Icon name={persona.icon} filled className="text-on-primary-container" />
+                  </div>
+                  <h2 className="font-display text-headline-sm text-primary uppercase md:text-headline-lg">
+                    {persona.name}
+                  </h2>
                 </div>
+                <p className="font-label text-label-sm text-on-surface-variant uppercase">
+                  {persona.title}
+                </p>
+                <p className="text-body-md text-on-surface">{persona.trait}</p>
+                <span className="w-fit rounded bg-error-container px-2 py-1 font-label text-label-sm text-error">
+                  THREAT LEVEL: {persona.threat}
+                </span>
               </div>
             </section>
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-              {PERSONAS.map((p, i) => (
-                <PersonaCard key={p.id} p={p} index={i} />
-              ))}
-            </div>
+            <section className="rounded-xl border border-outline-variant bg-surface-container p-6 shadow-sticker">
+              <h3 className="font-display text-headline-sm text-on-surface">Your field readings</h3>
+              <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {stats.map((s) => (
+                  <div
+                    key={s.label}
+                    className="rounded-lg border-b-4 border-surface-variant bg-surface-container-low p-4"
+                  >
+                    <div className="flex items-baseline justify-between">
+                      <span className="font-label text-label-sm text-on-surface-variant uppercase">
+                        {s.label}
+                      </span>
+                      <span className="font-display text-headline-sm text-primary">{s.value}%</span>
+                    </div>
+                    <p className="mt-1 font-label text-label-sm text-on-surface-variant opacity-70">
+                      &gt; {severity(s.value)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
 
-            <Link
-              to="/scenarios"
-              className="btn-tactical self-start rounded-lg border-inverse-primary bg-primary px-6 py-3 font-display text-label-sm tracking-wide text-on-primary uppercase active:translate-y-1"
-            >
-              Back to the jungle
-            </Link>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                to="/scenarios"
+                className="btn-tactical rounded-lg border-inverse-primary bg-primary px-6 py-3 font-display text-label-sm tracking-wide text-on-primary uppercase active:translate-y-1"
+              >
+                Back to the jungle
+              </Link>
+              <Link
+                to="/analysis"
+                className="btn-tactical rounded-lg border-surface-variant bg-surface-container-high px-6 py-3 font-display text-label-sm tracking-wide text-on-surface uppercase active:translate-y-1"
+              >
+                Full analysis
+              </Link>
+            </div>
           </div>
           <SiteFooter />
         </main>
