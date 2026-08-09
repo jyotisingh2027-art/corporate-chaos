@@ -7,6 +7,8 @@ import synergySorcerer from "@/assets/ChatGPT_Image_Aug_10_2026_12_01_22_AM.webp
 import overtimeOverlord from "@/assets/ChatGPT_Image_Aug_10_2026_12_01_28_AM.webp.asset.json";
 import corporateRocket from "@/assets/ChatGPT_Image_Aug_10_2026_12_01_58_AM.webp.asset.json";
 import microLion from "@/assets/ChatGPT_Image_Aug_10_2026_12_02_04_AM.webp.asset.json";
+import chaosAgent from "@/assets/ChatGPT_Image_Aug_10_2026_12_02_09_AM.png.asset.json";
+import spreadsheetNinja from "@/assets/ChatGPT_Image_Aug_10_2026_12_07_05_AM.png.asset.json";
 import type { Results } from "./chaos-game";
 
 export type Persona = {
@@ -111,12 +113,33 @@ export const PERSONAS: Persona[] = [
     image: microLion.url,
     alt: "Lion in a suit inspecting a daily status report with a magnifying glass",
   },
+  {
+    id: "chaos-agent",
+    icon: "warning",
+    name: "The Chaos Agent",
+    title: "Employee of Disruption & Breaker of Systems",
+    trait: "Today's plan: create chaos, blame the system, coffee. Rules? I prefer options.",
+    threat: "CRITICAL",
+    image: chaosAgent.url,
+    alt: "Green goblin in a suit with a Chaos Agent badge grinning at a laptop full of red alerts",
+  },
+  {
+    id: "spreadsheet-ninja",
+    icon: "table_chart",
+    name: "The Spreadsheet Ninja",
+    title: "Data Wizard of VLOOKUP, INDEX-MATCH & Dark Mode Excel",
+    trait: "In data we trust. In Excel we master. Formulas are my superpower.",
+    threat: "ELEVATED",
+    image: spreadsheetNinja.url,
+    alt: "Tiger in ninja gear wielding glowing katanas made of Excel formulas in a bamboo jungle",
+  },
 ];
 
 export function matchPersona(r: Results): Persona {
   const pick = (id: string) => PERSONAS.find((p) => p.id === id)!;
   const max = Math.max(r.caffeine, r.meetings, r.email, r.stress);
   if (r.stress <= 30) return pick("zen-master");
+  if (r.stress >= 85 && r.email >= 70) return pick("chaos-agent");
   if (max === r.email && r.email >= 70) return pick("hr-peacekeeper");
   if (max === r.meetings && r.meetings >= 80) return pick("micromanagement-lion");
   if (max === r.meetings) return pick("synergy-sorcerer");
@@ -124,5 +147,6 @@ export function matchPersona(r: Results): Persona {
   if (max === r.caffeine) return pick("task-juggler");
   if (r.stress >= 80) return pick("deadline-kraken");
   if (r.survival >= 70) return pick("corporate-rocket");
+  if (r.survival >= 55 && r.email <= 50) return pick("spreadsheet-ninja");
   return pick("strategy-wizard");
 }
