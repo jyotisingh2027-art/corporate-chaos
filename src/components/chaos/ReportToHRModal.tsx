@@ -1,4 +1,12 @@
+import { useState } from "react";
 import { Icon } from "./Icon";
+
+const CONTACT_METHODS = [
+  { value: "hotline", label: "Direct Hotline", icon: "call" },
+  { value: "email", label: "Email", icon: "mail" },
+  { value: "community", label: "Community Channel", icon: "forum" },
+  { value: "inperson", label: "In-Person", icon: "meeting_room" },
+] as const;
 
 export function ReportToHRModal({ onClose }: { onClose: () => void }) {
   return (
@@ -120,7 +128,160 @@ export function ReportToHRModal({ onClose }: { onClose: () => void }) {
             </div>
           </section>
         </div>
+
+        {/* HelpZone form */}
+        <div className="px-5 pb-8 md:px-8">
+          <section className="rounded-2xl border-2 border-primary/40 bg-surface-container p-5 shadow-sticker md:p-7">
+            <div className="mb-5 flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-error/50 bg-error-container/40">
+                <Icon name="support_agent" filled className="text-[20px] text-error" />
+              </span>
+              <div>
+                <h3 className="font-display text-headline-sm font-bold tracking-wide text-primary uppercase">
+                  HelpZone
+                </h3>
+                <p className="font-label text-label-sm text-on-surface-variant uppercase">
+                  Report an issue to HR
+                </p>
+              </div>
+            </div>
+            <HelpZoneForm />
+          </section>
+        </div>
       </div>
     </div>
+  );
+}
+
+function HelpZoneForm() {
+  const [name, setName] = useState("");
+  const [issue, setIssue] = useState("");
+  const [contact, setContact] = useState<string>("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !issue.trim() || !contact) return;
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className="flex flex-col items-center gap-3 rounded-xl border-2 border-dashed border-tertiary/60 bg-surface-container-low px-5 py-8 text-center">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-tertiary-container border border-tertiary/50">
+          <Icon name="check_circle" filled className="text-[28px] text-tertiary" />
+        </span>
+        <p className="font-display text-headline-sm font-bold text-tertiary uppercase">
+          Report Filed
+        </p>
+        <p className="max-w-md font-body text-body-md text-on-surface-variant">
+          Thanks {name.split(" ")[0]}! Your issue has been securely routed to the
+          Chaos Corp HR treehouse. A jungle liaison will reach out via your
+          preferred contact method shortly.
+        </p>
+        <button
+          type="button"
+          onClick={() => {
+            setName("");
+            setIssue("");
+            setContact("");
+            setSubmitted(false);
+          }}
+          className="btn-tactical mt-2 rounded-lg border-b-4 border-tertiary bg-tertiary-container px-5 py-2 font-label text-label-sm font-bold text-on-tertiary-container uppercase shadow-sticker-dark transition-all hover:translate-y-0.5 active:translate-y-1 active:border-b-0"
+        >
+          File Another Report
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      {/* Name */}
+      <label className="flex flex-col gap-2">
+        <span className="font-label text-label-sm font-bold text-on-surface uppercase">
+          Your Name
+        </span>
+        <div className="flex items-center gap-2 rounded-lg border-2 border-outline-variant bg-surface-container-low px-3 py-2 focus-within:border-primary">
+          <Icon name="badge" filled className="text-[18px] text-tertiary" />
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            maxLength={80}
+            required
+            placeholder="e.g. Jamie Junglehopper"
+            className="w-full bg-transparent font-body text-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none"
+          />
+        </div>
+      </label>
+
+      {/* Issue details */}
+      <label className="flex flex-col gap-2">
+        <span className="font-label text-label-sm font-bold text-on-surface uppercase">
+          Issue Details
+        </span>
+        <div className="rounded-lg border-2 border-outline-variant bg-surface-container-low px-3 py-2 focus-within:border-primary">
+          <textarea
+            value={issue}
+            onChange={(e) => setIssue(e.target.value)}
+            maxLength={500}
+            rows={4}
+            required
+            placeholder="Describe your issue, grievance, or chaos sighting..."
+            className="w-full resize-none bg-transparent font-body text-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none"
+          />
+        </div>
+        <span className="self-end font-label text-label-xs text-on-surface-variant">
+          {issue.length}/500
+        </span>
+      </label>
+
+      {/* Preferred contact method */}
+      <fieldset className="flex flex-col gap-2">
+        <legend className="mb-1 font-label text-label-sm font-bold text-on-surface uppercase">
+          Preferred Contact Method
+        </legend>
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
+          {CONTACT_METHODS.map((m) => {
+            const active = contact === m.value;
+            return (
+              <button
+                key={m.value}
+                type="button"
+                onClick={() => setContact(m.value)}
+                className={`flex flex-col items-center gap-1 rounded-lg border-2 px-2 py-3 text-center transition-all ${
+                  active
+                    ? "border-primary bg-primary-container/50 shadow-sticker"
+                    : "border-outline-variant bg-surface-container-low hover:border-primary/60"
+                }`}
+              >
+                <Icon
+                  name={m.icon}
+                  filled
+                  className={`text-[20px] ${active ? "text-primary" : "text-tertiary"}`}
+                />
+                <span
+                  className={`font-label text-label-sm uppercase ${
+                    active ? "font-bold text-primary" : "text-on-surface-variant"
+                  }`}
+                >
+                  {m.label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </fieldset>
+
+      {/* Submit */}
+      <button
+        type="submit"
+        className="btn-tactical mt-1 flex items-center justify-center gap-2 rounded-lg border-b-4 border-error bg-error px-5 py-3 font-label text-label-md font-bold text-on-error uppercase shadow-sticker-dark transition-all hover:translate-y-0.5 active:translate-y-1 active:border-b-0"
+      >
+        <Icon name="send" filled className="text-[18px]" />
+        Submit Report
+      </button>
+    </form>
   );
 }
