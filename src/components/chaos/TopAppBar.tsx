@@ -5,7 +5,13 @@ import { Icon } from "./Icon";
 const AVATAR =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuDEbAHdYL_HRiclFI52l3iEA9S8nPidUzZT3ymn-ccTGv0uxedhQc-oj55H7MiwH9jzMHBCrICb9o62_ZGS7MoImf0krlpNTUjBFuNAV20CFpj2WooQgVsAodqCiVsc7DHaJ4_cFoHLKHiqafnIQaetn7hNLSxRHXmPhp4uOh04AFW08Pjov-DQaiAnr6ZCVZz3MH3xXEMwEifgVoMPsh-SdL_ffgY2dovrwzwn3S3kOF4eu-1VQ0isvA";
 
-export function TopAppBar({ onPanic }: { onPanic?: () => void }) {
+export function TopAppBar({
+  onPanic,
+  onReport,
+}: {
+  onPanic?: () => void;
+  onReport?: () => void;
+}) {
   const [sfxOn, setSfxOn] = useState(true);
 
   return (
@@ -39,6 +45,7 @@ export function TopAppBar({ onPanic }: { onPanic?: () => void }) {
         {/* Report to HR */}
         <button
           type="button"
+          onClick={onReport}
           className="btn-tactical flex items-center gap-2 rounded-lg border-b-4 border-primary bg-primary-container px-4 py-2 font-label text-label-sm text-on-primary-container uppercase shadow-sticker transition-all hover:translate-y-0.5 hover:border-primary/60 active:translate-y-1 active:border-b-0"
         >
           <Icon name="campaign" filled className="text-[18px]" />
