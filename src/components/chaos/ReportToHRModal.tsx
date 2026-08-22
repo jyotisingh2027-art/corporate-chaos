@@ -1,4 +1,12 @@
+import { useState } from "react";
 import { Icon } from "./Icon";
+
+const CONTACT_METHODS = [
+  { value: "hotline", label: "Direct Hotline", icon: "call" },
+  { value: "email", label: "Email", icon: "mail" },
+  { value: "community", label: "Community Channel", icon: "forum" },
+  { value: "inperson", label: "In-Person", icon: "meeting_room" },
+] as const;
 
 export function ReportToHRModal({ onClose }: { onClose: () => void }) {
   return (
