@@ -54,7 +54,7 @@ function LaunchScreen() {
 
           <div className="pt-8">
             <Link
-              to="/scenarios"
+              to="/profile"
               className="group relative inline-flex items-center justify-center rounded-lg border-b-4 border-inverse-primary bg-gradient-to-br from-primary to-primary-container px-8 py-4 font-display text-headline-sm tracking-tight text-on-primary uppercase shadow-[4px_8px_0px_0px_var(--on-primary)] transition-all duration-150 hover:translate-y-1 hover:shadow-[2px_4px_0px_0px_var(--on-primary)] active:translate-y-2 active:shadow-none"
             >
               <span className="mr-3">Enter the jungle</span>

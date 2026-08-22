@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnalysisRouteImport } from './routes/analysis'
 import { Route as PersonasRouteImport } from './routes/personas'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ScenariosRouteImport } from './routes/scenarios'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +30,11 @@ const PersonasRoute = PersonasRouteImport.update({
   path: '/personas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ScenariosRoute = ScenariosRouteImport.update({
   id: '/scenarios',
   path: '/scenarios',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analysis': typeof AnalysisRoute
   '/personas': typeof PersonasRoute
+  '/profile': typeof ProfileRoute
   '/scenarios': typeof ScenariosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analysis': typeof AnalysisRoute
   '/personas': typeof PersonasRoute
+  '/profile': typeof ProfileRoute
   '/scenarios': typeof ScenariosRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/analysis': typeof AnalysisRoute
   '/personas': typeof PersonasRoute
+  '/profile': typeof ProfileRoute
   '/scenarios': typeof ScenariosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analysis' | '/personas' | '/scenarios'
+  fullPaths: '/' | '/analysis' | '/personas' | '/profile' | '/scenarios'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analysis' | '/personas' | '/scenarios'
-  id: '__root__' | '/' | '/analysis' | '/personas' | '/scenarios'
+  to: '/' | '/analysis' | '/personas' | '/profile' | '/scenarios'
+  id: '__root__' | '/' | '/analysis' | '/personas' | '/profile' | '/scenarios'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnalysisRoute: typeof AnalysisRoute
   PersonasRoute: typeof PersonasRoute
+  ProfileRoute: typeof ProfileRoute
   ScenariosRoute: typeof ScenariosRoute
 }
 
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PersonasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scenarios': {
       id: '/scenarios'
       path: '/scenarios'
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnalysisRoute: AnalysisRoute,
   PersonasRoute: PersonasRoute,
+  ProfileRoute: ProfileRoute,
   ScenariosRoute: ScenariosRoute,
 }
 export const routeTree = rootRouteImport
