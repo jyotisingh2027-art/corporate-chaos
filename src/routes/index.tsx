@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Icon } from "@/components/chaos/Icon";
 import { TopAppBar } from "@/components/chaos/TopAppBar";
+import { ReportToHRModal } from "@/components/chaos/ReportToHRModal";
 
 const HERO =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCnELoblzvO1bJj2Y5Yl4jFHqlClGzn8UW9AWDY_8U5e9a5d0u3VQ-DG5-9I0ih72gsUG3AH3eusZ9mc220VpFqjbzkEdkqK0puuUQdf6BXViDzQYMwQlO-65WHiiRbmg2X0V5HjqjNw-oFe7cwXITDsdjnGu_LUKqzacXoXMobrZQPacdko8orfrGtO29rzjG9y1egkNSOHyWk9-c2qIJqfhpi63QKrWWL4HRQKEv3BoLq4rkqj0wtsg";
@@ -24,9 +26,11 @@ export const Route = createFileRoute("/")({
 });
 
 function LaunchScreen() {
+  const [showHR, setShowHR] = useState(false);
   return (
     <>
-    <TopAppBar />
+    <TopAppBar onReport={() => setShowHR(true)} />
+    {showHR && <ReportToHRModal onClose={() => setShowHR(false)} />}
     <main className="jungle-bg relative flex min-h-screen w-full flex-grow items-center justify-center overflow-x-hidden px-margin-mobile pt-24 pb-12 md:px-margin-desktop md:pt-28">
       <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-between overflow-hidden opacity-30">
         <div className="h-full w-1/3 -translate-x-[20%] -skew-x-12 border-r-4 border-outline-variant bg-surface-container-high" />
