@@ -108,18 +108,25 @@ function ProfileScreen() {
               >
                 Corporate Designation / Job Title
               </label>
-              <select
-                id="emp-title"
-                value={designation}
-                onChange={(e) => setDesignation(e.target.value)}
-                className="mt-2 w-full appearance-none rounded-lg border-2 border-outline-variant bg-surface-container-lowest px-4 py-3 font-label text-on-surface focus:border-primary focus:outline-none"
-              >
-                {DESIGNATIONS.map((d) => (
-                  <option key={d} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
+              <div className="relative mt-2">
+                <select
+                  id="emp-title"
+                  value={designation}
+                  onChange={(e) => setDesignation(e.target.value)}
+                  className="w-full appearance-none rounded-lg border-2 border-outline-variant bg-surface-container-lowest px-4 py-3 pr-12 font-label text-on-surface focus:border-primary focus:outline-none"
+                >
+                  {DESIGNATIONS.map((d) => (
+                    <option key={d} value={d}>
+                      {d}
+                    </option>
+                  ))}
+                </select>
+                <Icon
+                  name="expand_more"
+                  filled
+                  className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-[22px] text-primary"
+                />
+              </div>
 
               <p className="mt-6 font-label text-label-sm tracking-wider text-tertiary uppercase">
                 Select Badge Photo (6 options)
