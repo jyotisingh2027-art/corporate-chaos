@@ -70,7 +70,7 @@ function ProfileScreen() {
   const [showHR, setShowHR] = useState(false);
   const [name, setName] = useState("");
   const [designation, setDesignation] = useState<string>(DESIGNATIONS[0]);
-  const [badge, setBadge] = useState(BADGES[0]);
+  const [badge, setBadge] = useState(BADGES[0]!);
 
   const start = () => {
     try {
