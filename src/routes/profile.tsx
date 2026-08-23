@@ -160,11 +160,11 @@ function ProfileScreen() {
                 Live Preview
               </span>
               <div className="flex flex-col items-center">
-                <div className="h-32 w-32 overflow-hidden rounded-full border-4 border-primary shadow-sticker">
+                <div className="w-full max-w-sm overflow-hidden rounded-xl border-4 border-primary shadow-sticker">
                   <img
                     src={badge.url}
                     alt="Selected badge photo"
-                    className="h-full w-full object-cover"
+                    className="aspect-square w-full object-cover"
                   />
                 </div>
                 <h2 className="mt-4 font-display text-headline-sm text-primary">
