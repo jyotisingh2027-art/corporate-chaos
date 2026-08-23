@@ -1,9 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useRouter } from "@tanstack/react-router";
 import { Icon } from "./Icon";
+import {
+  ProfileBadgeModal,
+  type ProfileData,
+  type ResultsData,
+} from "./ProfileBadgeModal";
 
 const AVATAR =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuDEbAHdYL_HRiclFI52l3iEA9S8nPidUzZT3ymn-ccTGv0uxedhQc-oj55H7MiwH9jzMHBCrICb9o62_ZGS7MoImf0krlpNTUjBFuNAV20CFpj2WooQgVsAodqCiVsc7DHaJ4_cFoHLKHiqafnIQaetn7hNLSxRHXmPhp4uOh04AFW08Pjov-DQaiAnr6ZCVZz3MH3xXEMwEifgVoMPsh-SdL_ffgY2dovrwzwn3S3kOF4eu-1VQ0isvA";
+
+const PROFILE_KEY = "chaos-profile";
+const RESULTS_KEY = "corporate-chaos-results";
+
+function readProfile(): ProfileData | null {
+  try {
+    const raw = sessionStorage.getItem(PROFILE_KEY);
+    return raw ? (JSON.parse(raw) as ProfileData) : null;
+  } catch {
+    return null;
+  }
+}
+
+function readResults(): ResultsData | null {
+  try {
+    const raw = sessionStorage.getItem(RESULTS_KEY);
+    return raw ? (JSON.parse(raw) as ResultsData) : null;
+  } catch {
+    return null;
+  }
+}
 
 export function TopAppBar({
   onPanic,
