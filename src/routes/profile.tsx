@@ -32,37 +32,20 @@ export const DESIGNATIONS = [
   "Director of Quick Syncs",
 ] as const;
 
+import badge1 from "@/assets/badge_Screenshot_2026-08-23_at_12.32.49_PM.png.asset.json";
+import badge2 from "@/assets/badge_Screenshot_2026-08-23_at_12.32.56_PM.png.asset.json";
+import badge3 from "@/assets/badge_Screenshot_2026-08-23_at_12.33.05_PM.png.asset.json";
+import badge4 from "@/assets/badge_Screenshot_2026-08-23_at_12.33.12_PM.png.asset.json";
+import badge5 from "@/assets/badge_Screenshot_2026-08-23_at_12.33.20_PM.png.asset.json";
+import badge6 from "@/assets/badge_Screenshot_2026-08-23_at_12.33.27_PM.png.asset.json";
+
 const BADGES = [
-  {
-    id: "security",
-    label: "Security Badge",
-    url: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=60",
-  },
-  {
-    id: "terminal",
-    label: "Data Terminal",
-    url: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=60",
-  },
-  {
-    id: "jungle",
-    label: "Jungle Server Room",
-    url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=400&q=60",
-  },
-  {
-    id: "ops",
-    label: "Operations Desk",
-    url: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=400&q=60",
-  },
-  {
-    id: "synergy",
-    label: "Synergy Standup",
-    url: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&q=60",
-  },
-  {
-    id: "slides",
-    label: "Slide Deck Dungeon",
-    url: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=60",
-  },
+  { id: "burnout", label: "Burnout Veteran", url: badge1.url },
+  { id: "sysadmin", label: "Server Room Sentinel", url: badge2.url },
+  { id: "nightshift", label: "Night Shift Coder", url: badge3.url },
+  { id: "globex", label: "Coffee-Fueled Associate", url: badge4.url },
+  { id: "unhinged", label: "Deadline Survivor", url: badge5.url },
+  { id: "chimp", label: "Jungle Cubicle Chimp", url: badge6.url },
 ];
 
 function ProfileScreen() {
