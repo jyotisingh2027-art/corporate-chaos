@@ -45,7 +45,7 @@ function PersonasScreen() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <TopAppBar />
+      <TopAppBar showBack />
       <div className="flex flex-1 pt-16">
         <SideNavBar />
         <main className="flex min-h-[calc(100vh-4rem)] flex-1 flex-col p-margin-mobile lg:ml-64 lg:p-margin-desktop">

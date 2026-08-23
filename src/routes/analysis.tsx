@@ -88,7 +88,7 @@ function AnalysisScreen() {
   return (
     <div className="relative flex min-h-screen flex-col">
       <EmojiMatrix />
-      <TopAppBar />
+      <TopAppBar showBack />
       <div className="relative z-10 flex flex-1 pt-16">
         <SideNavBar />
         <main className="flex min-h-[calc(100vh-4rem)] flex-1 flex-col p-margin-mobile lg:ml-64 lg:p-margin-desktop">

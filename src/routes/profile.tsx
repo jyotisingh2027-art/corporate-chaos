@@ -32,37 +32,20 @@ export const DESIGNATIONS = [
   "Director of Quick Syncs",
 ] as const;
 
+import badge1 from "@/assets/badge_Screenshot_2026-08-23_at_12.32.49_PM.png.asset.json";
+import badge2 from "@/assets/badge_Screenshot_2026-08-23_at_12.32.56_PM.png.asset.json";
+import badge3 from "@/assets/badge_Screenshot_2026-08-23_at_12.33.05_PM.png.asset.json";
+import badge4 from "@/assets/badge_Screenshot_2026-08-23_at_12.33.12_PM.png.asset.json";
+import badge5 from "@/assets/badge_Screenshot_2026-08-23_at_12.33.20_PM.png.asset.json";
+import badge6 from "@/assets/badge_Screenshot_2026-08-23_at_12.33.27_PM.png.asset.json";
+
 const BADGES = [
-  {
-    id: "security",
-    label: "Security Badge",
-    url: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=60",
-  },
-  {
-    id: "terminal",
-    label: "Data Terminal",
-    url: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=60",
-  },
-  {
-    id: "jungle",
-    label: "Jungle Server Room",
-    url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=400&q=60",
-  },
-  {
-    id: "ops",
-    label: "Operations Desk",
-    url: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=400&q=60",
-  },
-  {
-    id: "synergy",
-    label: "Synergy Standup",
-    url: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&q=60",
-  },
-  {
-    id: "slides",
-    label: "Slide Deck Dungeon",
-    url: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=60",
-  },
+  { id: "burnout", label: "Burnout Veteran", url: badge1.url },
+  { id: "sysadmin", label: "Server Room Sentinel", url: badge2.url },
+  { id: "nightshift", label: "Night Shift Coder", url: badge3.url },
+  { id: "globex", label: "Coffee-Fueled Associate", url: badge4.url },
+  { id: "unhinged", label: "Deadline Survivor", url: badge5.url },
+  { id: "chimp", label: "Jungle Cubicle Chimp", url: badge6.url },
 ];
 
 function ProfileScreen() {
@@ -86,7 +69,7 @@ function ProfileScreen() {
 
   return (
     <>
-      <TopAppBar onReport={() => setShowHR(true)} />
+      <TopAppBar onReport={() => setShowHR(true)} showBack />
       {showHR && <ReportToHRModal onClose={() => setShowHR(false)} />}
       <main className="jungle-bg min-h-screen w-full px-margin-mobile pt-24 pb-16 md:px-margin-desktop md:pt-28">
         <div className="mx-auto max-w-container-max rounded-2xl border-4 border-outline-variant bg-surface-container-low p-6 shadow-sticker md:p-10">
@@ -125,18 +108,25 @@ function ProfileScreen() {
               >
                 Corporate Designation / Job Title
               </label>
-              <select
-                id="emp-title"
-                value={designation}
-                onChange={(e) => setDesignation(e.target.value)}
-                className="mt-2 w-full appearance-none rounded-lg border-2 border-outline-variant bg-surface-container-lowest px-4 py-3 font-label text-on-surface focus:border-primary focus:outline-none"
-              >
-                {DESIGNATIONS.map((d) => (
-                  <option key={d} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
+              <div className="relative mt-2">
+                <select
+                  id="emp-title"
+                  value={designation}
+                  onChange={(e) => setDesignation(e.target.value)}
+                  className="w-full appearance-none rounded-lg border-2 border-outline-variant bg-surface-container-lowest px-4 py-3 pr-12 font-label text-on-surface focus:border-primary focus:outline-none"
+                >
+                  {DESIGNATIONS.map((d) => (
+                    <option key={d} value={d}>
+                      {d}
+                    </option>
+                  ))}
+                </select>
+                <Icon
+                  name="expand_more"
+                  filled
+                  className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-[22px] text-primary"
+                />
+              </div>
 
               <p className="mt-6 font-label text-label-sm tracking-wider text-tertiary uppercase">
                 Select Badge Photo (6 options)
@@ -177,11 +167,11 @@ function ProfileScreen() {
                 Live Preview
               </span>
               <div className="flex flex-col items-center">
-                <div className="h-32 w-32 overflow-hidden rounded-full border-4 border-primary shadow-sticker">
+                <div className="w-full max-w-sm overflow-hidden rounded-xl border-4 border-primary shadow-sticker">
                   <img
                     src={badge.url}
                     alt="Selected badge photo"
-                    className="h-full w-full object-cover"
+                    className="aspect-square w-full object-cover"
                   />
                 </div>
                 <h2 className="mt-4 font-display text-headline-sm text-primary">

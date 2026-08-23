@@ -70,7 +70,7 @@ function ScenariosScreen() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <TopAppBar onPanic={reset} />
+      <TopAppBar onPanic={reset} showBack />
       <div className="flex flex-1 pt-16">
         <SideNavBar />
         <div className="flex flex-1 flex-col lg:ml-64">
