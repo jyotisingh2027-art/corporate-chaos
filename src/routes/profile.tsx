@@ -86,7 +86,7 @@ function ProfileScreen() {
 
   return (
     <>
-      <TopAppBar onReport={() => setShowHR(true)} />
+      <TopAppBar onReport={() => setShowHR(true)} showBack />
       {showHR && <ReportToHRModal onClose={() => setShowHR(false)} />}
       <main className="jungle-bg min-h-screen w-full px-margin-mobile pt-24 pb-16 md:px-margin-desktop md:pt-28">
         <div className="mx-auto max-w-container-max rounded-2xl border-4 border-outline-variant bg-surface-container-low p-6 shadow-sticker md:p-10">
