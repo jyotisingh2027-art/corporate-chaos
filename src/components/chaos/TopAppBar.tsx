@@ -8,20 +8,36 @@ const AVATAR =
 export function TopAppBar({
   onPanic,
   onReport,
+  showBack,
 }: {
   onPanic?: () => void;
   onReport?: () => void;
+  showBack?: boolean;
 }) {
   const [sfxOn, setSfxOn] = useState(true);
+  const router = useRouter();
 
   return (
     <header className="fixed top-0 left-0 z-50 flex h-16 w-full items-center justify-between gap-4 border-b-4 border-surface-variant bg-surface-container-low px-margin-mobile shadow-[4px_4px_0px_0px_color-mix(in_oklab,var(--primary)_30%,transparent)] md:px-margin-desktop">
-      <Link
-        to="/"
-        className="font-display text-headline-sm font-black tracking-tighter text-primary uppercase md:text-headline-lg"
-      >
-        Corporate Chaos
-      </Link>
+      <div className="flex items-center gap-3">
+        {showBack && (
+          <button
+            type="button"
+            onClick={() => router.history.back()}
+            aria-label="Go back to previous page"
+            className="flex items-center gap-1 rounded-lg border-2 border-outline-variant bg-surface-container px-2.5 py-1.5 font-label text-label-sm text-primary uppercase transition-colors hover:border-primary hover:bg-primary-container/30"
+          >
+            <Icon name="arrow_back" filled className="text-[18px]" />
+            <span className="hidden sm:inline">Back</span>
+          </button>
+        )}
+        <Link
+          to="/"
+          className="font-display text-headline-sm font-black tracking-tighter text-primary uppercase md:text-headline-lg"
+        >
+          Corporate Chaos
+        </Link>
+      </div>
 
       <div className="flex items-center gap-3">
         {/* SFX toggle */}
