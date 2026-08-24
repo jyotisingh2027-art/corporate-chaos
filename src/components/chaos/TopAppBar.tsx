@@ -56,6 +56,7 @@ export function TopAppBar({
   const displayAvatar = profile?.badge || AVATAR;
 
   return (
+    <>
     <header className="fixed top-0 left-0 z-50 flex h-16 w-full items-center justify-between gap-4 border-b-4 border-surface-variant bg-surface-container-low px-margin-mobile shadow-[4px_4px_0px_0px_color-mix(in_oklab,var(--primary)_30%,transparent)] md:px-margin-desktop">
       <div className="flex items-center gap-3">
         {showBack && (
