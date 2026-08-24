@@ -116,27 +116,40 @@ export function TopAppBar({
           <span>Panic!</span>
         </button>
 
-        {/* Profile pill */}
-        <div className="flex items-center gap-3 rounded-full border border-outline-variant bg-surface-container px-2 py-1 pr-4">
+        {/* Profile pill — view only */}
+        <button
+          type="button"
+          onClick={() => setShowProfile(true)}
+          aria-label="View your employee profile"
+          className="flex items-center gap-3 rounded-full border border-outline-variant bg-surface-container px-2 py-1 pr-4 transition-colors hover:border-primary hover:bg-primary-container/30"
+        >
           <div className="h-9 w-9 overflow-hidden rounded-full border-2 border-primary shadow-sticker">
             <img
-              alt="Stressed employee ID photo"
+              alt="Employee badge photo"
               className="h-full w-full object-cover"
-              src={AVATAR}
+              src={displayAvatar}
               loading="lazy"
             />
           </div>
-          <div className="hidden flex-col leading-tight md:flex">
+          <div className="hidden flex-col items-start leading-tight md:flex">
             <span className="flex items-center gap-1 font-label text-label-sm font-bold text-primary">
-              Employee
-              <Icon name="edit" className="text-[14px] text-on-surface-variant" />
+              {displayName}
+              <Icon name="visibility" className="text-[14px] text-on-surface-variant" />
             </span>
             <span className="font-label text-[10px] text-on-surface-variant">
-              Level 1 Intern
+              {displayTitle}
             </span>
           </div>
-        </div>
+        </button>
       </div>
     </header>
+
+    {showProfile && (
+      <ProfileBadgeModal
+        profile={profile}
+        results={results}
+        onClose={() => setShowProfile(false)}
+      />
+    )}
   );
 }
