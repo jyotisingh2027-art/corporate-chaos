@@ -41,9 +41,22 @@ export function TopAppBar({
   showBack?: boolean;
 }) {
   const [sfxOn, setSfxOn] = useState(true);
+  const [showProfile, setShowProfile] = useState(false);
+  const [profile, setProfile] = useState<ProfileData | null>(null);
+  const [results, setResults] = useState<ResultsData | null>(null);
   const router = useRouter();
 
+  useEffect(() => {
+    setProfile(readProfile());
+    setResults(readResults());
+  }, []);
+
+  const displayName = profile?.name?.trim() || "Employee";
+  const displayTitle = profile?.designation || "Level 1 Intern";
+  const displayAvatar = profile?.badge || AVATAR;
+
   return (
+    <>
     <header className="fixed top-0 left-0 z-50 flex h-16 w-full items-center justify-between gap-4 border-b-4 border-surface-variant bg-surface-container-low px-margin-mobile shadow-[4px_4px_0px_0px_color-mix(in_oklab,var(--primary)_30%,transparent)] md:px-margin-desktop">
       <div className="flex items-center gap-3">
         {showBack && (
@@ -104,27 +117,41 @@ export function TopAppBar({
           <span>Panic!</span>
         </button>
 
-        {/* Profile pill */}
-        <div className="flex items-center gap-3 rounded-full border border-outline-variant bg-surface-container px-2 py-1 pr-4">
+        {/* Profile pill — view only */}
+        <button
+          type="button"
+          onClick={() => setShowProfile(true)}
+          aria-label="View your employee profile"
+          className="flex items-center gap-3 rounded-full border border-outline-variant bg-surface-container px-2 py-1 pr-4 transition-colors hover:border-primary hover:bg-primary-container/30"
+        >
           <div className="h-9 w-9 overflow-hidden rounded-full border-2 border-primary shadow-sticker">
             <img
-              alt="Stressed employee ID photo"
+              alt="Employee badge photo"
               className="h-full w-full object-cover"
-              src={AVATAR}
+              src={displayAvatar}
               loading="lazy"
             />
           </div>
-          <div className="hidden flex-col leading-tight md:flex">
+          <div className="hidden flex-col items-start leading-tight md:flex">
             <span className="flex items-center gap-1 font-label text-label-sm font-bold text-primary">
-              Employee
-              <Icon name="edit" className="text-[14px] text-on-surface-variant" />
+              {displayName}
+              <Icon name="visibility" className="text-[14px] text-on-surface-variant" />
             </span>
             <span className="font-label text-[10px] text-on-surface-variant">
-              Level 1 Intern
+              {displayTitle}
             </span>
           </div>
-        </div>
+        </button>
       </div>
     </header>
+
+    {showProfile && (
+      <ProfileBadgeModal
+        profile={profile}
+        results={results}
+        onClose={() => setShowProfile(false)}
+      />
+    )}
+    </>
   );
 }

@@ -145,7 +145,7 @@ export function ProfileBadgeModal({
                     filled
                     className="text-[16px] text-tertiary"
                   />
-                  <span className="font-label text-label-md font-bold tracking-wider text-tertiary uppercase">
+                  <span className="font-label text-label-sm font-bold tracking-wider text-tertiary uppercase">
                     Status: {status}
                   </span>
                 </div>
