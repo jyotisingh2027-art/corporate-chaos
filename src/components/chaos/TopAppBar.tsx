@@ -41,7 +41,19 @@ export function TopAppBar({
   showBack?: boolean;
 }) {
   const [sfxOn, setSfxOn] = useState(true);
+  const [showProfile, setShowProfile] = useState(false);
+  const [profile, setProfile] = useState<ProfileData | null>(null);
+  const [results, setResults] = useState<ResultsData | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    setProfile(readProfile());
+    setResults(readResults());
+  }, []);
+
+  const displayName = profile?.name?.trim() || "Employee";
+  const displayTitle = profile?.designation || "Level 1 Intern";
+  const displayAvatar = profile?.badge || AVATAR;
 
   return (
     <header className="fixed top-0 left-0 z-50 flex h-16 w-full items-center justify-between gap-4 border-b-4 border-surface-variant bg-surface-container-low px-margin-mobile shadow-[4px_4px_0px_0px_color-mix(in_oklab,var(--primary)_30%,transparent)] md:px-margin-desktop">
