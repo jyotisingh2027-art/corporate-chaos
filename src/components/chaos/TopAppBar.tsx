@@ -152,5 +152,6 @@ export function TopAppBar({
         onClose={() => setShowProfile(false)}
       />
     )}
+    </>
   );
 }
