@@ -111,7 +111,7 @@ function PersonasScreen() {
 
             <div className="flex flex-wrap gap-4">
               <Link
-                to="/scenarios"
+                to="/level2-unlocked"
                 className="btn-tactical flex items-center gap-2 rounded-lg border-inverse-primary bg-primary px-6 py-3 font-display text-label-sm tracking-wide text-on-primary uppercase shadow-sticker transition-all hover:translate-y-0.5 active:translate-y-1 active:border-b-0"
               >
                 <Icon name="lock_open" filled />
