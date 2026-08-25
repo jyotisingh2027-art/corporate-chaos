@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnalysisRouteImport } from './routes/analysis'
+import { Route as Level2UnlockedRouteImport } from './routes/level2-unlocked'
 import { Route as PersonasRouteImport } from './routes/personas'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ScenariosRouteImport } from './routes/scenarios'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const AnalysisRoute = AnalysisRouteImport.update({
   id: '/analysis',
   path: '/analysis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Level2UnlockedRoute = Level2UnlockedRouteImport.update({
+  id: '/level2-unlocked',
+  path: '/level2-unlocked',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PersonasRoute = PersonasRouteImport.update({
@@ -44,6 +50,7 @@ const ScenariosRoute = ScenariosRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analysis': typeof AnalysisRoute
+  '/level2-unlocked': typeof Level2UnlockedRoute
   '/personas': typeof PersonasRoute
   '/profile': typeof ProfileRoute
   '/scenarios': typeof ScenariosRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analysis': typeof AnalysisRoute
+  '/level2-unlocked': typeof Level2UnlockedRoute
   '/personas': typeof PersonasRoute
   '/profile': typeof ProfileRoute
   '/scenarios': typeof ScenariosRoute
@@ -59,21 +67,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/analysis': typeof AnalysisRoute
+  '/level2-unlocked': typeof Level2UnlockedRoute
   '/personas': typeof PersonasRoute
   '/profile': typeof ProfileRoute
   '/scenarios': typeof ScenariosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analysis' | '/personas' | '/profile' | '/scenarios'
+  fullPaths:
+    | '/'
+    | '/analysis'
+    | '/level2-unlocked'
+    | '/personas'
+    | '/profile'
+    | '/scenarios'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analysis' | '/personas' | '/profile' | '/scenarios'
-  id: '__root__' | '/' | '/analysis' | '/personas' | '/profile' | '/scenarios'
+  to:
+    | '/'
+    | '/analysis'
+    | '/level2-unlocked'
+    | '/personas'
+    | '/profile'
+    | '/scenarios'
+  id:
+    | '__root__'
+    | '/'
+    | '/analysis'
+    | '/level2-unlocked'
+    | '/personas'
+    | '/profile'
+    | '/scenarios'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnalysisRoute: typeof AnalysisRoute
+  Level2UnlockedRoute: typeof Level2UnlockedRoute
   PersonasRoute: typeof PersonasRoute
   ProfileRoute: typeof ProfileRoute
   ScenariosRoute: typeof ScenariosRoute
@@ -93,6 +122,13 @@ declare module '@tanstack/react-router' {
       path: '/analysis'
       fullPath: '/analysis'
       preLoaderRoute: typeof AnalysisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/level2-unlocked': {
+      id: '/level2-unlocked'
+      path: '/level2-unlocked'
+      fullPath: '/level2-unlocked'
+      preLoaderRoute: typeof Level2UnlockedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/personas': {
@@ -122,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnalysisRoute: AnalysisRoute,
+  Level2UnlockedRoute: Level2UnlockedRoute,
   PersonasRoute: PersonasRoute,
   ProfileRoute: ProfileRoute,
   ScenariosRoute: ScenariosRoute,
