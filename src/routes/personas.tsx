@@ -112,15 +112,10 @@ function PersonasScreen() {
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/scenarios"
-                className="btn-tactical rounded-lg border-inverse-primary bg-primary px-6 py-3 font-display text-label-sm tracking-wide text-on-primary uppercase active:translate-y-1"
+                className="btn-tactical flex items-center gap-2 rounded-lg border-inverse-primary bg-primary px-6 py-3 font-display text-label-sm tracking-wide text-on-primary uppercase shadow-sticker transition-all hover:translate-y-0.5 active:translate-y-1 active:border-b-0"
               >
-                Back to the jungle
-              </Link>
-              <Link
-                to="/analysis"
-                className="btn-tactical rounded-lg border-surface-variant bg-surface-container-high px-6 py-3 font-display text-label-sm tracking-wide text-on-surface uppercase active:translate-y-1"
-              >
-                Full analysis
+                <Icon name="lock_open" filled />
+                Level 2 Unlocked
               </Link>
             </div>
           </div>
