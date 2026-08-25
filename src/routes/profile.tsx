@@ -106,7 +106,7 @@ function ProfileScreen() {
                 htmlFor="emp-title"
                 className="mt-6 block font-label text-label-sm tracking-wider text-tertiary uppercase"
               >
-                Corporate Designation / Job Title
+                Corporate Designation (Choose one that describes you the best)
               </label>
               <div className="relative mt-2">
                 <select
