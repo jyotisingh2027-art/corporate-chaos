@@ -16,6 +16,8 @@ const ACTIVE =
 
 export function SideNavBar() {
   const [level1Done, setLevel1Done] = useState(false);
+  const [showResign, setShowResign] = useState(false);
+
 
   useEffect(() => {
     try {
