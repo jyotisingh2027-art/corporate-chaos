@@ -15,6 +15,7 @@ import { Route as Level2UnlockedRouteImport } from './routes/level2-unlocked'
 import { Route as PersonasRouteImport } from './routes/personas'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ScenariosRouteImport } from './routes/scenarios'
+import { Route as StealthRouteImport } from './routes/stealth'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const ScenariosRoute = ScenariosRouteImport.update({
   path: '/scenarios',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StealthRoute = StealthRouteImport.update({
+  id: '/stealth',
+  path: '/stealth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/personas': typeof PersonasRoute
   '/profile': typeof ProfileRoute
   '/scenarios': typeof ScenariosRoute
+  '/stealth': typeof StealthRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/personas': typeof PersonasRoute
   '/profile': typeof ProfileRoute
   '/scenarios': typeof ScenariosRoute
+  '/stealth': typeof StealthRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/personas': typeof PersonasRoute
   '/profile': typeof ProfileRoute
   '/scenarios': typeof ScenariosRoute
+  '/stealth': typeof StealthRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/personas'
     | '/profile'
     | '/scenarios'
+    | '/stealth'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/personas'
     | '/profile'
     | '/scenarios'
+    | '/stealth'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/personas'
     | '/profile'
     | '/scenarios'
+    | '/stealth'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +118,7 @@ export interface RootRouteChildren {
   PersonasRoute: typeof PersonasRoute
   ProfileRoute: typeof ProfileRoute
   ScenariosRoute: typeof ScenariosRoute
+  StealthRoute: typeof StealthRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScenariosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/stealth': {
+      id: '/stealth'
+      path: '/stealth'
+      fullPath: '/stealth'
+      preLoaderRoute: typeof StealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -162,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   PersonasRoute: PersonasRoute,
   ProfileRoute: ProfileRoute,
   ScenariosRoute: ScenariosRoute,
+  StealthRoute: StealthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
