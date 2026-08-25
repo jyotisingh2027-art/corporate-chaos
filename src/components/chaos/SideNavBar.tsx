@@ -65,14 +65,18 @@ export function SideNavBar() {
 
       <button
         type="button"
+        onClick={() => setShowResign(true)}
         className="mt-auto flex w-full items-center justify-center gap-2 rounded-lg border-b-4 border-error-container bg-error py-3 font-bold text-on-error shadow-sticker-danger transition-all hover:bg-error-container hover:text-error active:translate-y-1"
       >
-        <Icon name="campaign" />
-        Report to HR
+        <Icon name="logout" />
+        Resign
       </button>
+
+      {showResign && <ResignModal onClose={() => setShowResign(false)} />}
     </aside>
   );
 }
+
 
 function LockedLevel({
   icon,
