@@ -191,12 +191,6 @@ function AnalysisScreen() {
 
             <div className="flex flex-wrap gap-4">
               <Link
-                to="/scenarios"
-                className="btn-tactical rounded-lg border-inverse-primary bg-primary px-6 py-3 font-display text-label-sm tracking-wide text-on-primary uppercase active:translate-y-1"
-              >
-                Run the jungle again
-              </Link>
-              <Link
                 to="/personas"
                 className="btn-tactical rounded-lg border-surface-variant bg-surface-container-high px-6 py-3 font-display text-label-sm tracking-wide text-on-surface uppercase active:translate-y-1"
               >
