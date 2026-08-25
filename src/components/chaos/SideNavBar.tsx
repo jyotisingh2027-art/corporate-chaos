@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Icon } from "./Icon";
+import { ResignModal } from "./ResignModal";
+
 
 const KIT =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuA4PKUocpULJOP2nCHFAXvFCdGIaPLcRcKN9ao8YXqq7lRSDH5608-UfxagDrzvpFnq2-eoJORKYTZgBVYrCG7s127Q-ejx60ZGdSs73LM28zBwCKjrwF7yGfiQDCEkFUw7rFbwrKZ8s6tH5zhyE888j7a1njKIAoax7fPcnNIq-_jL-flh2rjNiyJQzHdthzmZZcQRM0HDoV2FysWVPgHvAnTyrO9D7OWy6gp4-aNnkCW1Z9pgEyw_hw";
