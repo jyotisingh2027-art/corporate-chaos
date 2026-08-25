@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Icon } from "./Icon";
+import { ResignModal } from "./ResignModal";
+
 
 const KIT =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuA4PKUocpULJOP2nCHFAXvFCdGIaPLcRcKN9ao8YXqq7lRSDH5608-UfxagDrzvpFnq2-eoJORKYTZgBVYrCG7s127Q-ejx60ZGdSs73LM28zBwCKjrwF7yGfiQDCEkFUw7rFbwrKZ8s6tH5zhyE888j7a1njKIAoax7fPcnNIq-_jL-flh2rjNiyJQzHdthzmZZcQRM0HDoV2FysWVPgHvAnTyrO9D7OWy6gp4-aNnkCW1Z9pgEyw_hw";
@@ -14,6 +16,8 @@ const ACTIVE =
 
 export function SideNavBar() {
   const [level1Done, setLevel1Done] = useState(false);
+  const [showResign, setShowResign] = useState(false);
+
 
   useEffect(() => {
     try {
@@ -65,14 +69,18 @@ export function SideNavBar() {
 
       <button
         type="button"
+        onClick={() => setShowResign(true)}
         className="mt-auto flex w-full items-center justify-center gap-2 rounded-lg border-b-4 border-error-container bg-error py-3 font-bold text-on-error shadow-sticker-danger transition-all hover:bg-error-container hover:text-error active:translate-y-1"
       >
-        <Icon name="campaign" />
-        Report to HR
+        <Icon name="logout" />
+        Resign
       </button>
+
+      {showResign && <ResignModal onClose={() => setShowResign(false)} />}
     </aside>
   );
 }
+
 
 function LockedLevel({
   icon,

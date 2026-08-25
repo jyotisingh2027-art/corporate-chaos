@@ -70,7 +70,7 @@ export function ResignModal({ onClose }: { onClose: () => void }) {
 
   const total = QUESTIONS.length;
   const atFeedback = step < total;
-  const q = QUESTIONS[step];
+  const q = QUESTIONS[step] ?? QUESTIONS[0]!;
 
   const deleteAccount = () => {
     try {
