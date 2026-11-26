@@ -17,6 +17,8 @@ export const Route = createFileRoute("/scenarios")({
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ScenariosScreen,
@@ -63,14 +65,9 @@ function ScenariosScreen() {
     }
   };
 
-  const reset = () => {
-    setIndex(0);
-    setPicked([]);
-  };
-
   return (
     <div className="flex min-h-screen flex-col">
-      <TopAppBar onPanic={reset} showBack />
+      <TopAppBar showBack />
       <div className="flex flex-1 pt-16">
         <SideNavBar />
         <div className="flex flex-1 flex-col lg:ml-64">

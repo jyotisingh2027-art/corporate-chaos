@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the audit spreadsheet at `/stealth` and route the header panic control there, so it remains separate from the game and can exit directly home.

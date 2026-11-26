@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useRouter } from "@tanstack/react-router";
+import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { Icon } from "./Icon";
 import {
   ProfileBadgeModal,
@@ -32,11 +32,9 @@ function readResults(): ResultsData | null {
 }
 
 export function TopAppBar({
-  onPanic,
   onReport,
   showBack,
 }: {
-  onPanic?: () => void;
   onReport?: () => void;
   showBack?: boolean;
 }) {
@@ -45,6 +43,7 @@ export function TopAppBar({
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [results, setResults] = useState<ResultsData | null>(null);
   const router = useRouter();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setProfile(readProfile());
@@ -110,7 +109,7 @@ export function TopAppBar({
         {/* Panic */}
         <button
           type="button"
-          onClick={onPanic}
+          onClick={() => navigate({ to: "/stealth" })}
           className="btn-tactical flex items-center gap-2 rounded-lg border-b-4 border-error-container bg-error px-4 py-2 font-label text-label-sm text-on-error uppercase shadow-sticker-danger transition-all hover:translate-y-0.5 hover:bg-error-container hover:text-error active:translate-y-1 active:border-b-0"
         >
           <Icon name="warning" filled className="text-[18px]" />

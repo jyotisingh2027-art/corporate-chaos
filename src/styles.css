@@ -119,6 +119,27 @@
   --color-outline: var(--outline);
   --color-outline-variant: var(--outline-variant);
   --color-on-background: var(--on-background);
+  --color-stealth-paper: var(--stealth-paper);
+  --color-stealth-header: var(--stealth-header);
+  --color-stealth-ink: var(--stealth-ink);
+  --color-stealth-line: var(--stealth-line);
+  --color-stealth-grid: var(--stealth-grid);
+  --color-stealth-panel: var(--stealth-panel);
+  --color-stealth-heading: var(--stealth-heading);
+  --color-stealth-row-alt: var(--stealth-row-alt);
+  --color-stealth-muted: var(--stealth-muted);
+  --color-stealth-positive: var(--stealth-positive);
+  --color-stealth-alert: var(--stealth-alert);
+  --color-stealth-neutral: var(--stealth-neutral);
+  --color-stealth-positive-soft: var(--stealth-positive-soft);
+  --color-stealth-positive-dark: var(--stealth-positive-dark);
+  --color-stealth-alert-soft: var(--stealth-alert-soft);
+  --color-stealth-alert-dark: var(--stealth-alert-dark);
+  --color-stealth-neutral-soft: var(--stealth-neutral-soft);
+  --color-stealth-chart-q1: var(--stealth-chart-q1);
+  --color-stealth-chart-q2: var(--stealth-chart-q2);
+  --color-stealth-chart-q3: var(--stealth-chart-q3);
+  --color-stealth-chart-q4: var(--stealth-chart-q4);
 }
 
 :root {
@@ -195,6 +216,29 @@
   --sidebar-accent-foreground: var(--on-surface);
   --sidebar-border: var(--surface-variant);
   --sidebar-ring: var(--primary);
+
+  /* Light spreadsheet palette, scoped to the stealth audit screen. */
+  --stealth-paper: oklch(1 0 0);
+  --stealth-header: oklch(0.48 0.15 148);
+  --stealth-ink: oklch(0.29 0.035 255);
+  --stealth-line: oklch(0.88 0.025 255);
+  --stealth-grid: oklch(0.91 0.025 255);
+  --stealth-panel: oklch(0.97 0.008 255);
+  --stealth-heading: oklch(0.93 0.022 255);
+  --stealth-row-alt: oklch(0.98 0.005 255);
+  --stealth-muted: oklch(0.68 0.035 255);
+  --stealth-positive: oklch(0.5 0.16 145);
+  --stealth-alert: oklch(0.55 0.22 25);
+  --stealth-neutral: oklch(0.49 0.035 255);
+  --stealth-positive-soft: oklch(0.94 0.055 150);
+  --stealth-positive-dark: oklch(0.4 0.11 145);
+  --stealth-alert-soft: oklch(0.94 0.055 25);
+  --stealth-alert-dark: oklch(0.45 0.17 25);
+  --stealth-neutral-soft: oklch(0.93 0.015 255);
+  --stealth-chart-q1: oklch(0.75 0.17 145);
+  --stealth-chart-q2: oklch(0.63 0.16 145);
+  --stealth-chart-q3: oklch(0.49 0.15 145);
+  --stealth-chart-q4: oklch(0.74 0.14 160);
 }
 
 @utility shadow-sticker {
